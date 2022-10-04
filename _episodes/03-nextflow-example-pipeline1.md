@@ -1,0 +1,229 @@
+---
+title: "Nextflow Example Pipeline1"
+teaching: 50
+exercises: 10
+questions:
+- "What are the main features of a Nextflow module?"
+- "What are the main components of a Nextflow pipeline?"
+- "How do I run a Nextflow pipeline?"
+objectives:
+- "Explain the benefits of using Nextflow to develop pipelines."
+- "Explain the components of a Nextflow process, pipeline."
+- "Run a Nextflow pipeline."
+keypoints:
+- "A workflow is a sequence of tasks that process a set of data."
+- "Nextflow scripts comprise of channels for controlling inputs and outputs, and processes for defining workflow tasks."
+- "You run Nextflow modules and pipelines using the `nextflow run` command."
+---
+
+## Our example script
+
+We are now going to look at a sample Nextflow script that performs some RNA-seq tasks.
+
+For the Nextflow course demo, you need to download some files to follow the lesson.
+1. Download <a href="https://laitanawe.github.io/nextflow-novice/data/data.tar.gz">nextflow-nov-lesson.tar.gz</a>
+2. Make a directory called "nfdemo" on the Desktop
+3. Move the nextflow-nov-lesson.tar.gz inside the nfdemo directory and cd into the nfdemo directory.
+4. Unzip/extract `nextflow-nov-lesson.tar.gz` by typing `tar -xzvf nextflow-nov-lesson.tar.gz`
+You should end up certain files within the folder **`nfdemo/data/ggal`** on your Desktop.
+
+
+Open the file `main.nf` in the script directory with your favourite text editor.
+
+This is a Nextflow script. It contains;
+
+1. An optional interpreter directive ("Shebang") line, specifying the location of the Nextflow interpreter.
+1. `nextflow.enable.dsl=2` to enable DSL2 syntax.
+1. A multi-line Nextflow comment, written using C style block comments,
+followed by a single line comment.
+1. A pipeline parameter `params.input` which is given a default value, of the relative path to the location of a compressed fastq file, as a string.
+1. An unnamed `workflow` execution block, which is the default workflow to run.
+1. A Nextflow channel used to read in data to the workflow.
+1. A call to the process `index`.
+1. An operation on the process output, using the channel operator `view()`.
+1. Nextflow `process` blocks named `fastqc`, `quant`, `multiqc`, which defines what the processes does.
+1. An `input` definition block that assigns the input to the variable `read`, and declares that it should be interpreted as a file `path`.
+1. An `output` definition block that uses the Linux/Unix standard output stream `stdout` from the script block.
+1. A `script` block that contains some bash commands.
+
+
+
+~~~
+#!/usr/bin/env nextflow
+
+/* Authors:
+ * - Awe, O. (laitanawe@gmail.com)
+ */
+
+nextflow.enable.dsl=2
+
+/*
+ * Default pipeline parameters can be overriden on the command line eg.
+ * given 'params.foo' specify on the run command line '--foo some_value'
+ */
+
+params.reads = "$baseDir/data/ggal/ggal_gut_{1,2}.fq"
+params.transcriptome = "$baseDir/data/ggal/ggal_gut_{1,2}.fq"
+params.outdir = "results"
+params.multiqc = "$baseDir/multiqc"
+
+log.info """\ Stop at 14.19
+RNASEQ NEXTFLOW PIPELINE uses the ffg bioinformatics tools: Salmon, FastQC, MultiQC
+transcriptome : ${params.transcriptome}
+reads         : ${params.reads}
+outdir        : ${params.outdir}
+"""
+
+/*  Comments are uninterpreted text included with the script.
+    They are useful for describing complex parts of the workflow
+    or providing useful information such as workflow usage.
+
+    Usage:
+       nextflow run wc.nf --input <input_file>
+
+    Multi-line comments start with a slash asterisk /* and finish with an asterisk slash. */
+//  Single line comments start with a double slash // and finish on the same line
+
+/*  Workflow parameters are written as params.<parameter>
+    and can be initialised using the `=` operator. */
+params.input = "data/yeast/reads/ref1_1.fq.gz"
+
+
+/*  A Nextflow process block
+    Process names are written, by convention, in uppercase.
+    This convention is used to enhance workflow readability. */
+
+process INDEX {
+
+    tag "$transcriptome.simpleName"
+
+    input:
+    path transcriptome
+
+    output:
+    path 'index'
+
+    script:
+    /* Triple quote syntax """, Triple-single-quoted strings may span multiple lines. The content of the string can cross line boundaries without the need to split the string in several pieces and without concatenation or newline escape characters. */
+    """
+    salmon index --threads $task.cpus -t $transcriptome -i $index
+    """
+}
+
+process QUANT {
+
+    input:
+    path index
+    tuple val(pair_id), path(reads)
+
+    output:
+    path(pair_id)
+
+    script:
+    /* Triple quote syntax """, Triple-single-quoted strings may span multiple lines. The content of the string can cross line boundaries without the need to split the string in several pieces and without concatenation or newline escape characters. */
+    """
+    salmon quant --threads $task.cpus --libType=U -i $index -1 ${reads[0]} -2 ${reads[1]} -o $pair_id
+    gunzip -c ${read} | wc -l
+    """
+}
+
+process fastqc {
+    tag "FASTQC on $sample_id"
+    publishDir params.outdir
+
+    input:
+    tuple val(sample_id), path(reads)
+
+    output:
+    path "fastqc_${sample_id}_logs"
+
+    script:
+    /* Triple quote syntax """, Triple-single-quoted strings may span multiple lines. The content of the string can cross line boundaries without the need to split the string in several pieces and without concatenation or newline escape characters. */
+    """
+    mkdir fastqc_${sample_id}_logs -f fastq -q ${reads}
+    fastqc -o fastqc_${sample_id}_logs -f fastq -q ${reads}
+    """
+}
+
+process MULTIQC {
+    publishDir params.outdir, mode: 'copy'
+
+    input:
+    path('*')
+
+    output:
+    path('multiqc_report.html')
+
+    script:
+    /* Triple quote syntax """, Triple-single-quoted strings may span multiple lines. The content of the string can cross line boundaries without the need to split the string in several pieces and without concatenation or newline escape characters. */
+    """
+    cp $config/* .
+    echo "custom_logo: \$PWD/logo.png" >> multiqc_config.yaml
+    multiqc -v .
+    """
+}
+
+//  The default workflow
+workflow {
+// Input channel objects can be specified here in the workflow scope.
+// Input data is received through channels
+// input_ch = Channel.fromPath(params.input)
+
+/*  The script to execute is called by its process name,
+    and input is provided between brackets. */
+
+/*  Process output is accessed using the `out` channel.
+    The channel operator view() can be used to print
+    process output to the terminal. */
+
+    index(params.transcriptome)
+    fastqc(read_pairs_ch)
+    quant( index.out, read_pairs_ch )
+    multiqc( fastqc.out.mix( quant.out ).collect(), params.multiqc )
+
+}
+~~~~
+{: .language-groovy}
+
+To run a Nextflow script use the command `nextflow run <script_name>`.
+
+> ## Run a Nextflow  script
+> Run the script by entering the following command in your terminal:
+>
+> ~~~
+> $ nextflow run main.nf
+> ~~~
+> {: .language-bash}
+> > ## Solution
+> > You should see output similar to the text shown below:
+> >
+> > ~~~
+> > N E X T F L O W  ~  version 20.10.0
+> > Launching `main.nf` [fervent_babbage] - revision: c54a707593
+> > executor >  local (1)
+> > [21/b259be] process > NUM_LINES (1) [100%] 1 of 1 ✔
+> >
+> >  ref1_1.fq.gz 58708
+> > ~~~
+> > {: .output}
+> >
+> > 1. The first line shows the Nextflow version number.
+> > 1. The second line shows the run name `fervent_babbage` (adjective and scientist name) and revision id `c54a707593`.
+> > 1. The third line tells you the process has been executed locally (`executor >  local`).
+> > 1. The next line shows the process id `21/b259be`, process name, number of cpus, percentage task completion, and how many instances of the process have been run.
+> > 1. The final line is the output of the `view` operator.
+> {: .solution}
+{: .challenge}
+
+
+> ## Process identification
+> The hexadecimal numbers, like 61/1f3ef4, identify the unique process execution.
+> These numbers are also the prefix of the directories where each process is executed.
+> You can inspect the files produced by changing to the directory `$PWD/work` and
+> using these numbers to find the process-specific execution path. We will learn how exactly
+> nextflow using *work* directory to execute processes in the following sections.
+{: .callout}
+
+
+
+{% include links.md %}
