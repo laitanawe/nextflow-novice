@@ -168,6 +168,7 @@ workflow {
 // Input channel objects can be specified here in the workflow scope.
 // Input data is received through channels
 // input_ch = Channel.fromPath(params.input)
+read_pairs_ch = channel.fromFilePairs( params.reads, checkIfExists: true )
 
 /*  The script to execute is called by its process name,
     and input is provided between brackets. */
