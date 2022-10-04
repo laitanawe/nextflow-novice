@@ -106,7 +106,7 @@ process index {
     script:
     /* Triple quote syntax """, Triple-single-quoted strings may span multiple lines. The content of the string can cross line boundaries without the need to split the string in several pieces and without concatenation or newline escape characters. */
     """
-    salmon index --threads $task.cpus -t $transcriptome -i $index
+    salmon index --threads $task.cpus -t $transcriptome -i index
     """
 }
 
@@ -139,8 +139,8 @@ process fastqc {
     script:
     /* Triple quote syntax """, Triple-single-quoted strings may span multiple lines. The content of the string can cross line boundaries without the need to split the string in several pieces and without concatenation or newline escape characters. */
     """
-    mkdir fastqc_${sample_id}_logs -f fastq -q ${reads}
-    fastqc -o fastqc_${sample_id}_logs -f fastq -q ${reads}
+    mkdir fastqc_${sample_id}_logs
+    fastqc -o fastqc_${sample_id}_logs ${reads}
     """
 }
 
