@@ -51,7 +51,7 @@ followed by a single line comment.
 ~~~
 #!/usr/bin/env nextflow
 
-/* Authors:
+/* Contributors:
  * - Awe, O. (laitanawe@gmail.com)
  */
 
@@ -67,7 +67,7 @@ params.transcriptome = "$baseDir/data/ggal/ggal_gut_{1,2}.fq"
 params.outdir = "results"
 params.multiqc = "$baseDir/multiqc"
 
-log.info """\ Stop at 14.19
+log.info """\
 RNASEQ NEXTFLOW PIPELINE uses the ffg bioinformatics tools: Salmon, FastQC, MultiQC
 transcriptome : ${params.transcriptome}
 reads         : ${params.reads}
@@ -86,7 +86,7 @@ outdir        : ${params.outdir}
 
 /*  Workflow parameters are written as params.<parameter>
     and can be initialised using the `=` operator. */
-params.input = "data/yeast/reads/ref1_1.fq.gz"
+//params.input = "data/yeast/reads/ref1_1.fq.gz"
 
 
 /*  A Nextflow process block
