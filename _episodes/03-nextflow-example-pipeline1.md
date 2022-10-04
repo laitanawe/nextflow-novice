@@ -149,6 +149,7 @@ process multiqc {
 
     input:
     path('*')
+    path(config)
 
     output:
     path('multiqc_report.html')
@@ -158,7 +159,7 @@ process multiqc {
     """
     cp $config/* .
     echo "custom_logo: \$PWD/logo.png" >> multiqc_config.yaml
-    multiqc -v .
+    multiqc .
     """
 }
 
