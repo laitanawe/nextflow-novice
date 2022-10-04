@@ -54,6 +54,11 @@ Key features include;
 * **Reentrancy**: Continuous checkpoints allow workflows to resume
 from the last successfully executed steps.
 
+Nextflow DSL2 is a major revision of the Nextflow DSL:
+- Pipeline modularisation
+- Component reuse
+- Fluent definition of recurrent implementation patterns
+
 ## Nextflow basic concepts
 
 Nextflow is a workflow management system that combines a runtime environment, software that is designed to run other software, and a *programming domain specific language (DSL)* that eases the writing of computational pipelines.
@@ -262,8 +267,8 @@ To run a Nextflow script use the command `nextflow run <script_name>`.
 > The hexadecimal numbers, like 61/1f3ef4, identify the unique process execution.
 > These numbers are also the prefix of the directories where each process is executed.
 > You can inspect the files produced by changing to the directory `$PWD/work` and
-> using these numbers to find the process-specific execution path. We will learn how exactly 
-> nextflow using *work* directory to execute processes in the following sections. 
+> using these numbers to find the process-specific execution path. We will learn how exactly
+> nextflow using *work* directory to execute processes in the following sections.
 {: .callout}
 
 
