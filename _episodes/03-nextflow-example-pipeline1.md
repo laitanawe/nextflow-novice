@@ -21,7 +21,7 @@ keypoints:
 We are now going to look at a sample Nextflow script that performs some RNA-seq tasks.
 
 For the Nextflow course demo, you need to download some files to follow the lesson.
-1. Download <a href="https://laitanawe.github.io/nextflow-novice/data/data.tar.gz">nextflow-nov-lesson.tar.gz</a>
+1. Download <a href="https://laitanawe.github.io/nextflow-novice/data/nextflow-nov-lesson.tar.gz">nextflow-nov-lesson.tar.gz</a>
 2. Make a directory called "nfdemo" on the Desktop
 3. Move the nextflow-nov-lesson.tar.gz inside the nfdemo directory and cd into the nfdemo directory.
 4. Unzip/extract `nextflow-nov-lesson.tar.gz` by typing `tar -xzvf nextflow-nov-lesson.tar.gz`
