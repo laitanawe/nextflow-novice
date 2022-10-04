@@ -93,7 +93,7 @@ params.input = "data/yeast/reads/ref1_1.fq.gz"
     Process names are written, by convention, in uppercase.
     This convention is used to enhance workflow readability. */
 
-process INDEX {
+process index {
 
     tag "$transcriptome.simpleName"
 
@@ -110,7 +110,7 @@ process INDEX {
     """
 }
 
-process QUANT {
+process quant {
 
     input:
     path index
@@ -145,7 +145,7 @@ process fastqc {
     """
 }
 
-process MULTIQC {
+process multiqc {
     publishDir params.outdir, mode: 'copy'
 
     input:
