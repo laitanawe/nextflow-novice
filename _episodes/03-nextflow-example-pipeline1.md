@@ -180,7 +180,7 @@ read_pairs_ch = channel.fromFilePairs( params.reads, checkIfExists: true )
     index(params.transcriptome)
     fastqc(read_pairs_ch)
     quant( index.out, read_pairs_ch )
-    multiqc( fastqc.out.mix( quant.out ).collect(), params.multiqc )
+    //multiqc( fastqc.out.mix( quant.out ).collect(), params.multiqc )
 
 }
 ~~~~
