@@ -7,11 +7,6 @@ root: .
 ## Download files
 You need to download some files to follow this lesson.
 
-1. Download [shell-lesson-data.zip][zip-file] and move the file to your Desktop.
-2. Unzip/extract `shell-lesson-data.zip`
-**Let your instructor know if you need help with this step**.
-You should end up with a new folder called **`shell-lesson-data`** on your Desktop.
-
 For the Nextflow lesson, you need to download some files to follow the lesson.
 1. Download <a href="https://laitanawe.github.io/nextflow-novice/data/nextflow-nov-lesson.tar.gz">nextflow-nov-lesson.tar.gz</a>
 2. Make a directory called "nfdemo" on the Desktop
@@ -20,7 +15,7 @@ For the Nextflow lesson, you need to download some files to follow the lesson.
 You should end up certain files within the folder **`nfdemo/data/ggal`** on your Desktop.
 
 **Let your instructor know if you need help with this step**.
-You should end up with a new folder called **`shell-lesson-data`** on your Desktop.
+
 
 ## Install software
 For a Windows computer, download and install <a href="https://mobaxterm.mobatek.net/download.html">MobaXterm</a>.
