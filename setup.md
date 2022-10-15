@@ -12,12 +12,12 @@ You need to download some files to follow this lesson.
 **Let your instructor know if you need help with this step**.
 You should end up with a new folder called **`shell-lesson-data`** on your Desktop.
 
-For the Shell Scripts lesson, you need to download some files to follow the lesson.
-1. Download <a href="https://laitanawe.github.io/intro-to-bash/data/bash-lesson.tar.gz">bash-lesson.tar.gz</a>
-2. Make a directory called "files" on the Desktop
-3. Move the bash-lesson.tar.gz inside the files directory and cd into the files directory.
-4. Unzip/extract `bash-lesson.tar.gz` by typing `tar -xzvf bash-lesson.tar.gz`
-You should end up certain files within the folder **`files`** on your Desktop.
+For the Nextflow lesson, you need to download some files to follow the lesson.
+1. Download <a href="https://laitanawe.github.io/nextflow-novice/data/nextflow-nov-lesson.tar.gz">nextflow-nov-lesson.tar.gz</a>
+2. Make a directory called "nfdemo" on the Desktop
+3. Move the nextflow-nov-lesson.tar.gz inside the nfdemo directory and cd into the nfdemo directory.
+4. Unzip/extract `nextflow-nov-lesson.tar.gz` by typing `tar -xzvf nextflow-nov-lesson.tar.gz`
+You should end up certain files within the folder **`nfdemo/data/ggal`** on your Desktop.
 
 **Let your instructor know if you need help with this step**.
 You should end up with a new folder called **`shell-lesson-data`** on your Desktop.
