@@ -20,7 +20,7 @@ keypoints:
 ## Our example script
 
 We are now going to look at sample Nextflow scripts.
-NOTE: In order to runa a Nextflow DSL2 script, it must have a workflow section.
+NOTE: In order to run a Nextflow DSL2 script, it must have a workflow section.
 
 ~~~
 #!/usr/bin/env nextflow
@@ -37,11 +37,13 @@ nextflow.enable.dsl=2
  */
 
  params.readpattern = "${baseDir}/data/ggal/*_1.fq"
- params.reads = Channel.fromPath(params.readpattern)
+ params.reads = Channel.fromPath( params.readpattern )
  params.concatout = "concatenated_fwd.txt"
  params.twentyout = "first_twenty_fwd.txt"
 
  process newconcat {
+
+ debug true
 
  input:
  path(myreads) from params.reads.collect()
@@ -54,6 +56,48 @@ nextflow.enable.dsl=2
 
  }
 ~~~~
+
+
+~~~
+#!/usr/bin/env nextflow
+
+/* Contributors:
+ * - Awe, O. (laitanawe@gmail.com)
+ */
+
+nextflow.enable.dsl=2
+
+/*
+ * Default pipeline parameters can be overriden on the command line eg.
+ * given 'params.foo' specify on the run command line '--foo some_value'
+ */
+
+ params.ch1 = Channel.from( 1,2,3 )
+ params.ch2 = Channel.from( '1','b','c' )
+ params.twentyout = "first_twenty_fwd.txt"
+
+ process twoinputs {
+
+ debug true
+
+ input:
+ val x
+ val y
+
+ script:
+ """
+ echo ${x} and ${y}
+ """
+ }
+
+workflow {
+ch1 = params.ch1
+ch2 = params.ch2
+
+twoinputs(ch1, ch2)
+}
+~~~~
+
 {: .language-groovy}
 
 To run a Nextflow script use the command `nextflow run <script_name>`.
