@@ -6,6 +6,7 @@ questions:
 - "What are the main sections of a Nextflow process?"
 - "What are the main components of a Nextflow pipeline?"
 - "How do I run a Nextflow pipeline?"
+- "Which sections of a Nextflow DSL2 script are required?"
 objectives:
 - "Explain the benefits of using Nextflow to develop pipelines."
 - "Explain the components of a Nextflow process, pipeline."
@@ -19,6 +20,7 @@ keypoints:
 ## Our example script
 
 We are now going to look at sample Nextflow scripts.
+NOTE: In order to runa a Nextflow DSL2 script, it must have a workflow section.
 
 ~~~
 #!/usr/bin/env nextflow
@@ -34,12 +36,12 @@ nextflow.enable.dsl=2
  * given 'params.foo' specify on the run command line '--foo some_value'
  */
 
- process concat {
-
  params.readpattern = "${baseDir}/data/ggal/*_1.fq"
  params.reads = Channel.fromPath(params.readpattern)
  params.concatout = "concatenated_fwd.txt"
  params.twentyout = "first_twenty_fwd.txt"
+
+ process newconcat {
 
  input:
  path(myreads) from params.reads.collect()
@@ -65,15 +67,34 @@ To run a Nextflow script use the command `nextflow run <script_name>`.
 > ~~~
 > {: .language-bash}
 > > ## Solution
-> > You should see output similar to the text shown below:
+> > If you don't specify nextflow.enable.dsl = 2, you should see output similar to the text shown below:
 > >
 > > ~~~
-> > N E X T F L O W  ~  version 20.10.0
-> > Launching `main.nf` [fervent_babbage] - revision: c54a707593
+> > N E X T F L O W  ~  version 22.04.5
+> > Launching `ex623.nf` [cranky_watson] DSL1 - revision: 665c5cb834
 > > executor >  local (1)
-> > [21/b259be] process > NUM_LINES (1) [100%] 1 of 1 ✔
+> > [fc/11704d] process > newconcat [100%] 1 of 1 ✔
 > >
-> >  ref1_1.fq.gz 58708
+> >  
+> > ~~~
+> > If you specify nextflow.enable.dsl = 2, you should see output similar to the text shown below:
+> >
+> > ~~~
+> > N E X T F L O W  ~  version 22.04.5
+> > Launching `ex623.nf` [mad_dijkstra] DSL2 - revision: 2e9549921f
+> > =============================================================================
+> > =                                WARNING                                    =
+> > = You are running this script using DSL2 syntax, however it does not        =
+> > = contain any 'workflow' definition so there's nothing for Nextflow to run. =
+> > =                                                                           =
+> > = If this script was written using Nextflow DSL1 syntax, please add the     =
+> > = setting 'nextflow.enable.dsl=1' to the nextflow.config file or use the    =
+> > = command-line option '-dsl1' when running the pipeline.                    =
+> > =                                                                           =
+> > = More details at this link: https://www.nextflow.io/docs/latest/dsl2.html  =
+> > =============================================================================
+> >
+> >  
 > > ~~~
 > > {: .output}
 > >
