@@ -16,6 +16,46 @@ You should end up certain files within the folder **`nfdemo/data/ggal`** on your
 
 **Let your instructor know if you need help with this step**.
 
+## Install Java version between 11 and 18 in your Linux environment
+## install java 17 under your $HOME directory:
+mkdir -pv ~/opt/java17
+
+cd ~/opt/java17
+
+base_url=https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL
+
+wget $base_url/openjdk-17.0.2_linux-x64_bin.tar.gz
+
+wget $base_url/openjdk-17.0.2_linux-x64_bin.tar.gz.sha256
+
+## check the checksums match before proceeding:
+sha256sum openjdk-17.0.2_linux-x64_bin.tar.gz
+
+cat openjdk-17.0.2_linux-x64_bin.tar.gz.sha256 && echo
+
+## unpack:
+tar -xzf openjdk-17.0.2_linux-x64_bin.tar.gz
+
+rm -v openjdk-17.0.2_linux-x64_bin.tar.gz*
+
+mv -fv jdk-17.0.2/* .
+
+rmdir jdk-17.0.2
+
+## put links to the executables in a common directory in your $PATH:
+mkdir -pv ~/bin
+
+ln -sfv $PWD/bin/* ~/bin/
+
+## if that folder is not in $PATH, add this to bottom of ~/.bashrc:
+echo export PATH=$HOME/bin:$PATH >> ~/.bashrc
+
+## then exit .bashrc and use it to reset and reload your $PATH: for java
+source ~/.bashrc
+
+## try it out:
+java -version
+
 ## Install Nextflow on Linux
 `mkdir -pv ~/opt/nextflow`
 
@@ -35,7 +75,7 @@ You should end up certain files within the folder **`nfdemo/data/ggal`** on your
 
 Next time you login, you will find $HOME/opt/nextflow in your $PATH. If you want this to be the default, you can do this:
 
-## Reload your path
+## Reload your path for nextflow
 `echo export PATH="$HOME/opt/nextflow:$PATH" >> ~/.bashrc`
 
 `source ~/.bashrc`
