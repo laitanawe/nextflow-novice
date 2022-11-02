@@ -10,6 +10,7 @@ You need to download some files to follow this lesson.
 For the Nextflow lesson, you need to download some files to follow the lesson.
 1. Make a directory called "nfdemo" on the Desktop  and cd into the nfdemo directory.
 (To create the demo directory in your Desktop, you can use: `mkdir -pv ~/Desktop/nfdemo`)
+(To cd into the demo directory in your Desktop, you can use: `cd ~/Desktop/nfdemo`)
 2. Download <a href="https://laitanawe.github.io/nextflow-novice/data/nextflow-nov-lesson.tar.gz">nextflow-nov-lesson.tar.gz</a>
 (If wget is installed in your environment, use: `wget https://laitanawe.github.io/nextflow-novice/data/nextflow-nov-lesson.tar.gz`)
 3. Unzip/extract `nextflow-nov-lesson.tar.gz` by typing `tar -xzvf nextflow-nov-lesson.tar.gz`
