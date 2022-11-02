@@ -18,17 +18,26 @@ You should end up certain files within the folder **`nfdemo/data/ggal`** on your
 
 ## Install Nextflow on Linux
 mkdir -pv ~/opt/nextflow
+
 rm -rfv ~/opt/nextflow/*
+
 cd ~/opt/nextflow
+
 curl -s https://get.nextflow.io | bash
+
 ln -s "$PWD/nextflow" ~/bin/nextflow
+
 ~/opt/nextflow/nextflow self-update
+
 export PATH="$HOME/opt/nextflow:$PATH"
 
 Next time you login, you will find $HOME/opt/nextflow in your $PATH. If you want this to be the default, you can do this:
+
 ## Reload your path
 echo export PATH="$HOME/opt/nextflow:$PATH" >> ~/.bashrc
+
 source ~/.bashrc
+
 nextflow -v
 
 ## Install software
