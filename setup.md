@@ -16,8 +16,7 @@ You should end up certain files within the folder **`nfdemo/data/ggal`** on your
 
 **Let your instructor know if you need help with this step**.
 
-## Install Java version between 11 and 18 in your Linux environment
-## install java 17 under your $HOME directory:
+## Install Java (version between 11 and 18) in your $HOME directory (e.g Java17)
 `mkdir -pv ~/opt/java17`
 
 `cd ~/opt/java17`
