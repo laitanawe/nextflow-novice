@@ -32,7 +32,7 @@ You should end up certain files within the folder **`nfdemo/data/ggal`** on your
 
 `cat openjdk-17.0.2_linux-x64_bin.tar.gz.sha256 && echo`
 
-## unpack:
+## Unpack and put links to the executables in a common directory in your $PATH::
 `tar -xzf openjdk-17.0.2_linux-x64_bin.tar.gz`
 
 `rm -v openjdk-17.0.2_linux-x64_bin.tar.gz*`
@@ -41,18 +41,13 @@ You should end up certain files within the folder **`nfdemo/data/ggal`** on your
 
 `rmdir jdk-17.0.2`
 
-## put links to the executables in a common directory in your $PATH:
 `mkdir -pv ~/bin`
 
-`ln -sfv $PWD/bin/* ~/bin/`
+`ln -sfv ~/opt/java17/bin/* ~/bin/`
 
-## if that folder is not in $PATH, add this to bottom of ~/.bashrc:
+## If not in $PATH, add this to bottom of ~/.bashrc, then exit and reload your $PATH:
 `echo export PATH=$HOME/bin:$PATH >> ~/.bashrc`
-
-## then exit .bashrc and use it to reset and reload your $PATH: for java
 `source ~/.bashrc`
-
-## try it out:
 `java -version`
 
 ## Install Nextflow on Linux
