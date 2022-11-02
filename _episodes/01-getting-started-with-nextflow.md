@@ -237,7 +237,7 @@ To run a Nextflow script use the command `nextflow run <script_name>`.
 
 To change the input value from the command line, use `nextflow run wc.nf --input '/path/to/input/file'`
 
-When using the script block, $ interpolates a Nextflow variable but you can use \$ to interpolate a bash variable as seen in the code below.
+When using the script block, `$` interpolates a Nextflow variable but you can use `\$` to interpolate a bash variable as seen in the code below.
 
 ~~~
 #!/usr/bin/env nextflow
