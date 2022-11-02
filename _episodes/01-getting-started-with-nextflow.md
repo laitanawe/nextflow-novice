@@ -295,9 +295,9 @@ process NUM_LINES {
 > > {: .output}
 > >
 > > 1. The first line shows the Nextflow version number.
-> > 1. The second line shows the run name `fervent_babbage` (adjective and scientist name) and revision id `c54a707593`.
+> > 1. The second line shows the run name `trusting_noether` (adjective and scientist name) and revision id `c54a707593`.
 > > 1. The third line tells you the process has been executed locally (`executor >  local`).
-> > 1. The next line shows the process id `21/b259be`, process name, number of cpus, percentage task completion, and how many instances of the process have been run.
+> > 1. The next line shows the process id `e0/9f2212`, process name, number of cpus, percentage task completion, and how many instances of the process have been run.
 > > 1. The final line is the output of the `view` operator.
 > {: .solution}
 {: .challenge}
