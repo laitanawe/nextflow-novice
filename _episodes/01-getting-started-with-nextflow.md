@@ -304,11 +304,11 @@ process NUM_LINES {
 
 
 > ## Process identification
-> The hexadecimal numbers, like 61/1f3ef4, identify the unique process execution.
+> The hexadecimal numbers, like e0/9f2212, identify the unique process execution.
 > These numbers are also the prefix of the directories where each process is executed.
 > You can inspect the files produced by changing to the directory `$PWD/work` and
 > using these numbers to find the process-specific execution path. We will learn how exactly
-> nextflow using *work* directory to execute processes in the following sections.
+> nextflow uses the *work* directory to execute processes in later sections.
 {: .callout}
 
 
