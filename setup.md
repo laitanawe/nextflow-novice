@@ -47,7 +47,9 @@ You should end up certain files within the folder **`nfdemo/data/ggal`** on your
 
 ## If not in $PATH, add this to bottom of ~/.bashrc, then exit and reload your $PATH:
 `echo export PATH=$HOME/bin:$PATH >> ~/.bashrc`
+
 `source ~/.bashrc`
+
 `java -version`
 
 ## Install Nextflow on Linux
