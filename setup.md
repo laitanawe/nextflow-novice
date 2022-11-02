@@ -27,7 +27,7 @@ You should end up certain files within the folder **`nfdemo/data/ggal`** on your
 
 `mkdir -pv ~/bin`
 
-`ln -s "$PWD/nextflow" ~/bin/nextflow`
+`ln -sv "$PWD/nextflow" ~/bin/nextflow`
 
 `~/opt/nextflow/nextflow self-update`
 
