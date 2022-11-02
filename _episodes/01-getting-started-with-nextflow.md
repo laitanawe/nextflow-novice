@@ -193,7 +193,7 @@ nextflow.enable.dsl=2
 
 /*  Workflow parameters are written as params.<parameter>
     and can be initialised using the `=` operator. */
-params.input = "data/yeast/reads/ref1_1.fq.gz"
+params.input = "data/ggal/ref1.fa"
 
 //  The default workflow
 workflow {
