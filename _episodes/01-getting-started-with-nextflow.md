@@ -179,7 +179,7 @@ followed by a single line comment.
 ~~~
 #!/usr/bin/env nextflow
 
-nextflow.enable.dsl=2
+nextflow.enable.dsl = 2
 
 /*  Comments are uninterpreted text included with the script.
     They are useful for describing complex parts of the workflow
