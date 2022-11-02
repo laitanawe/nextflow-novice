@@ -235,6 +235,45 @@ process NUM_LINES {
 
 To run a Nextflow script use the command `nextflow run <script_name>`.
 
+To change the input value from the command line, use `nextflow run wc.nf --input '/path/to/input/file'`
+
+When using the script block, $ interpolates a Nextflow variable but you can use \$ to interpolate a bash variable as seen in the code below.
+
+~~~
+#!/usr/bin/env nextflow
+
+nextflow.enable.dsl = 2
+
+params.input = "data/ggal/ref1.fa"
+
+workflow {
+
+    input_ch = Channel.fromPath(params.input)
+
+    NUM_LINES(input_ch)
+
+    NUM_LINES.out.view()
+}
+
+process NUM_LINES {
+
+    input:
+    path read
+
+    output:
+    stdout
+
+    script:
+    """
+    printf '${read}'
+    echo
+    mycnt=\$(cat ${read} | wc -l)
+    echo Number of lines: \$mycnt
+    """
+}
+~~~~
+{: .language-groovy}
+
 > ## Run a Nextflow  script
 > Run the script by entering the following command in your terminal:
 >
@@ -246,12 +285,12 @@ To run a Nextflow script use the command `nextflow run <script_name>`.
 > > You should see output similar to the text shown below:
 > >
 > > ~~~
-> > N E X T F L O W  ~  version 20.10.0
-> > Launching `wc.nf` [fervent_babbage] - revision: c54a707593
+> > N E X T F L O W  ~  version 22.10.1
+> > Launching `wc.nf` [trusting_noether] DSL2 - revision: 7db69c20af
 > > executor >  local (1)
-> > [21/b259be] process > NUM_LINES (1) [100%] 1 of 1 ✔
-> >
-> >  ref1_1.fq.gz 58708
+> > [e0/9f2212] process > NUM_LINES (1) [100%] 1 of 1 ✔
+> > ref1.fa
+> > Number of lines: 2852
 > > ~~~
 > > {: .output}
 > >
