@@ -1,7 +1,7 @@
 ---
 title: "Nextflow scripting"
 teaching: 30
-exercises: 5
+exercises: 30
 questions:
 - "What language are Nextflow scripts written in?"
 - "How do I store values in a Nextflow script?"
@@ -711,7 +711,7 @@ println (fib(10)) // prints 89
 {: .language-groovy }
 
 
-- A function can take multiple arguments separated by commas. 
+- A function can take multiple arguments separated by commas.
 - The `return` keyword can be omitted and the function implicitly returns the value of the last evaluated expression. (Not recommended)
 - Explicit types can be omitted. (Not recommended):
 
