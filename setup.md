@@ -25,6 +25,8 @@ You should end up certain files within the folder **`nfdemo/data/ggal`** on your
 
 `curl -s https://get.nextflow.io | bash`
 
+`mkdir -pv ~/bin`
+
 `ln -s "$PWD/nextflow" ~/bin/nextflow`
 
 `~/opt/nextflow/nextflow self-update`
@@ -34,11 +36,11 @@ You should end up certain files within the folder **`nfdemo/data/ggal`** on your
 Next time you login, you will find $HOME/opt/nextflow in your $PATH. If you want this to be the default, you can do this:
 
 ## Reload your path
-echo export PATH="$HOME/opt/nextflow:$PATH" >> ~/.bashrc
+`echo export PATH="$HOME/opt/nextflow:$PATH" >> ~/.bashrc`
 
-source ~/.bashrc
+`source ~/.bashrc`
 
-nextflow -v
+`nextflow -v`
 
 ## Install software
 For a Windows computer, download and install <a href="https://mobaxterm.mobatek.net/download.html">MobaXterm</a>.
