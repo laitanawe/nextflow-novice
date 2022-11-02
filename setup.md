@@ -27,7 +27,7 @@ You should end up certain files within the folder **`nfdemo/data/ggal`** on your
 
 `wget $base_url/openjdk-17.0.2_linux-x64_bin.tar.gz.sha256`
 
-## check the checksums match before proceeding:
+## Check if the checksums match before proceeding:
 `sha256sum openjdk-17.0.2_linux-x64_bin.tar.gz`
 
 `cat openjdk-17.0.2_linux-x64_bin.tar.gz.sha256 && echo`
@@ -69,7 +69,7 @@ You should end up certain files within the folder **`nfdemo/data/ggal`** on your
 
 Next time you login, you will find $HOME/opt/nextflow in your $PATH. If you want this to be the default, you can do this:
 
-## Reload your path for nextflow
+## Reload your path for Nextflow
 `echo export PATH="$HOME/opt/nextflow:$PATH" >> ~/.bashrc`
 
 `source ~/.bashrc`
