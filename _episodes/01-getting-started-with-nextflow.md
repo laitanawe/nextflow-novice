@@ -227,7 +227,7 @@ process NUM_LINES {
     """
     printf '${read}'
     echo
-    cat ${read} | wc -l
+    cat '${read}' | wc -l
     """
 }
 ~~~~
