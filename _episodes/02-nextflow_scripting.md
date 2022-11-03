@@ -233,10 +233,10 @@ To use a variable inside a single or multi-line double quoted string `""`  prefi
 chr = "1"
 chr = "1"
 
-//Your variable will interpolate when used within double quotes
+//When using your variable within double quotes, you must prefix the $ for your variable to interpolate
 println("processing chromosome $chr")
 
-//You don't need the $ before chr when concatinating as seen below:              
+//You don't need the $ prefix before chr because it's unquoted when concatinating as seen below:              
 println("processing chromosome " + chr)
 ~~~
 {: .language-groovy }
