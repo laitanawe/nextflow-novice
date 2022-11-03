@@ -53,24 +53,24 @@ Nextflow is a Domain Specific Language (DSL) implemented on top of the Groovy pr
 To print something is as easy as using the `println` method (`println` is a compression of "print line") and passing the text to print in quotes.
 The text is referred to as a `string` as in a string of characters.
 ~~~
-println("Hello, World!")
+println("Our script works!")
 ~~~
 {: .language-groovy }
 
 ~~~
-Hello, World!
+Our script works!
 ~~~
 {: .output }
 
 **Parenthesis** for function invocations are optional. Therefore also the following is a valid syntax.
 
 ~~~
-println "Hello, World!"
+println "Our script works!"
 ~~~
 {: .language-groovy }
 
 ~~~
-Hello, World!
+Our script works!
 ~~~
 {: .output }
 
