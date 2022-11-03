@@ -231,7 +231,13 @@ To use a variable inside a single or multi-line double quoted string `""`  prefi
 
 ~~~
 chr = "1"
+chr = "1"
+
+//Your variable will interpolate when used within double quotes
 println("processing chromosome $chr")
+
+//You don't need the $ before chr when concatinating as seen below:              
+println("processing chromosome " + chr)
 ~~~
 {: .language-groovy }
 
@@ -244,6 +250,7 @@ processing chromosome 1
 
 ~~~
 chr = "1"
+//Your variable will not interpolate when used within single quotes
 println('processing chromosome $chr')
 ~~~
 {: .language-groovy }
