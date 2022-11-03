@@ -1,7 +1,7 @@
 ---
 title: "Nextflow scripting"
-teaching: 30
-exercises: 30
+teaching: 40
+exercises: 20
 questions:
 - "What language are Nextflow scripts written in?"
 - "How do I store values in a Nextflow script?"
@@ -361,13 +361,13 @@ mylist = [0,1,2]
 println(mylist.size())
 
 //inside a string need we need to use the ${} syntax
-println("list size is:  ${mylist.size()}")
+println("list size is: ${mylist.size()}")
 ~~~
 {: .language-groovy }
 
 ~~~
 3
-list size is:  3
+list size is: 3
 ~~~
 {: .output }
 
@@ -448,12 +448,12 @@ println mylist.findAll{it%2 == 0}
 It can difficult to remember the index of a value in a list, so we can use Groovy Maps (also known as associative arrays) that have an arbitrary type of key instead of an integer value. The syntax is very similar to Lists. To specify the key use a colon before the value `[key:value]`. Multiple values are separated by a comma. *Note:* the key value is not enclosed in quotes.
 
 ~~~                
-roi = [ chromosome : "chr17", start: 7640755, end: 7718054, genes: ['ATP1B2','TP53','WRAP53']]
+roi = [ chromosome: "chr17", start: 7640755, end: 7718054, genes: ['ATP1B2','TP53','WRAP53']]
 ~~~
 {: .language-groovy }
 
 
-Maps can be accessed in a conventional square-bracket syntax or as if the key was a property of the map or using the dot notation. *Note:* When retrieving a value the key value is  enclosed in quotes.
+Maps can be accessed in a conventional square-bracket syntax or as if the key was a property of the map or using the dot notation. *Note:* When retrieving a value the key value is enclosed in quotes.
 
 ~~~
 //Use of the square brackets.
