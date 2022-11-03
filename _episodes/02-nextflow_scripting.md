@@ -65,18 +65,18 @@ Our script works!
 **Parenthesis** for function invocations are optional. Therefore also the following is a valid syntax.
 
 ~~~
-println "Our script works!"
+println "Our script works without parenthesis!"
 ~~~
 {: .language-groovy }
 
 ~~~
-Our script works!
+Our script works without parenthesis!
 ~~~
 {: .output }
 
 ## Methods
 
-`println` is a example of a Groovy method. A method is just a block of code which only runs when it is called.
+`println` is an example of a Groovy method. A method is just a block of code which only runs when it is called.
 You can pass data, known as parameters, into a method using the method name followed by brackets `()`.
 Methods are used to perform certain actions, and they are also known as functions.
 Methods enable us to reuse code: define the code once, and use it many times.
