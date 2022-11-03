@@ -305,7 +305,8 @@ To define a range use `<num1>..<num2>` notation.
 ~~~
 kmers = [11,21,27,31]
 // The first three elements using a range.
-println(kmer[0..2])
+println(kmers[0..2])
+// Because kmers is a list, this will print the first three elements of the kmers list
 ~~~
 {: .language-groovy }
 ~~~
@@ -315,20 +316,21 @@ println(kmer[0..2])
 
 ### String interpolation of list elements
 
-To use an expression like `kmer[0..2]` inside a double quoted String `""` we use the `${expression}` syntax, similar to Bash shell scripts.
+To use an expression like `kmer[0..2]` inside a double-quoted string `""` or a single-quoted string `''`, we use the `${expression}` syntax, similar to Bash shell scripts.
 
 For example, the expression below without the `{}`""
 
 ~~~
 kmers = [11,21,27,31]
-println("The first three elements in the Lists are. $kmers[0..2]")
+println("The first three elements in the Lists are: $kmers[0..2]")
+// Because $kmers is a list, this will print the kmers list, followed by [0..2]
 ~~~
 {: .language-groovy }
 
 would output.
 
 ~~~
-The first three elements in the Lists are. [11, 21, 27, 31][0..2]
+The first three elements in the Lists are: [11, 21, 27, 31][0..2]
 ~~~
 {: .output}
 
@@ -336,13 +338,13 @@ We need to enclose the `kmers[0..2]` expression inside `${}` as below to get the
 
 ~~~
 kmers = [11,21,27,31]
-println("The first three elements in the Lists are. ${kmers[0..2]}")
+println("The first three elements in the Lists are: ${kmers[0..2]}")
 ~~~
 {: .language-groovy }
 
 
 ~~~
-The first three elements in the Lists are. [11, 21, 27]
+The first three elements in the Lists are: [11, 21, 27]
 ~~~
 {: .output}
 
