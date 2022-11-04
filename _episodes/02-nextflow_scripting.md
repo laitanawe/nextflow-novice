@@ -311,7 +311,7 @@ output:
 
 script:
  """
- The examples below highlight how to interpolate in the script block:
+ #The examples below highlight how to interpolate in the script block:
 
  echo mystr #No \$ prefix, and there is No interpolation.
 
