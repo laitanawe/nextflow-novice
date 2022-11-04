@@ -299,7 +299,7 @@ In the script block, to use a nextflow variable inside a single or multi-line do
 `$` is <b>mandatory for interpolation within the script block and `""` or `''` is optional when you prefix a Nextflow variable with `$` in the script block</b>. <b>Even when using `$` within a bash `#` comment</b> in the script block, you must use `\$` in order to treat the `$` as part of the comment.
 
 <b>NOTE: b.) Outside the script block</b>:
-Outside the script block and in the Nextflow scope (<i>any area outside of the script block</i>), `""` is required if you want to interpolate a Nextflow variable using a `$` prefix. Also, in the Nextflow scope, use a Nextflow variable name within the arguments of a groovy function/operator if there's no `""` i.e. you don't need a `$` prefix to for interpolation in that case.
+Outside the script block and in the Nextflow scope (<i>any area that is not within the script block</i>), `""` is required if you want to interpolate a Nextflow variable using a `$` prefix. Also, in the Nextflow scope, use a Nextflow variable name within the arguments of a groovy function/operator if there's no `""` i.e. you don't need a `$` prefix for interpolation in that case.
 
 ~~~
 #!/usr/bin/env nextflow
