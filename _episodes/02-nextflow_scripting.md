@@ -291,6 +291,71 @@ processing chromosome $chr
 ~~~
 {: .output }
 
+### String interpolation within the script block
+
+In the script blockk, to use a nextflow variable inside a single or multi-line double quoted string `""` prefix the variable name with a `$` to show it should be interpolated:
+
+~~~
+
+process testme {
+
+input:
+ val mystr
+
+output:
+ stdout
+
+script:
+ """
+ echo ${mystr}
+ """
+}
+
+workflow {
+
+any_var_name = "Our Script Works!"
+params.input = Channel.from(any_var_name)
+testme(params.input)
+testme.out.view()
+
+}
+
+The examples below highlight how to interpolate in the script block:
+
+echo mystr #No \$ prefix, and there is No interpolation.
+
+echo "mystr" #Double Quotes, No \$, No Interpolation.
+
+echo "$mystr" #Double Quotes, \$ Interpolation.
+
+echo "${mystr}" #Double Quotes, \${} Interpolation.
+
+echo "{mystr}" #Double Quotes, No \$, No Interpolation.
+
+echo '${mystr}' #Single Quotes, \${} but there is Interpolation.
+
+echo '$mystr' #Single Quotes, \${} but there is Interpolation.
+
+~~~
+{: .language-groovy }
+
+~~~
+
+executor >  local (1)
+[86/2f14f5] process > neerja (1) [100%] 1 of 1 ✔
+mystr
+mystr
+Our Script Works!
+Our Script Works!
+{mystr}
+Our Script Works!
+Our Script Works!
+
+~~~
+{: .output }
+
+**Note:** Variable names inside single quoted strings do not support String interpolation.
+
 ## Lists
 
 To store multiple values in a variable we can use a List.
