@@ -505,13 +505,22 @@ list size is: 3
 We can use the `get` method items to retrieve items in a list.
 
 ~~~
-mylist = [0,1,2]
+mylist = [100,150,200]
 println mylist.get(1)
+
+println "${mylist.get(1)}"
+
+println(mylist.get(1))
+
+println("${mylist.get(1)}")
+
 ~~~
 {: .language-groovy }
 
 ~~~
-1
+150
+150
+150
 ~~~
 {: .output }
 
