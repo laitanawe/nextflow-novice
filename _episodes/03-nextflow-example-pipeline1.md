@@ -36,14 +36,14 @@ This is a Nextflow script. It contains;
 1. `nextflow.enable.dsl=2` to enable DSL2 syntax.
 1. A multi-line Nextflow comment, written using C style block comments,
 followed by a single line comment.
-1. A pipeline parameter `params.input` which is given a default value, of the relative path to the location of a compressed fastq file, as a string.
+1. A pipeline parameter `params.reads` which is given a default value, of the relative path to the location of paired-end fastq files, as a string.
 1. An unnamed `workflow` execution block, which is the default workflow to run.
 1. A Nextflow channel used to read in data to the workflow.
 1. A call to the process `index`.
 1. An operation on the process output, using the channel operator `view()`.
-1. Nextflow `process` blocks named `fastqc`, `quant`, `multiqc`, which defines what the processes does.
-1. An `input` definition block that assigns the input to the variable `read`, and declares that it should be interpreted as a file `path`.
-1. An `output` definition block that uses the Linux/Unix standard output stream `stdout` from the script block.
+1. Nextflow `process` blocks named `fastqc`, `quant`, `multiqc`, which defines what the process does.
+1. An `input` definition block that assigns the input to a variable, and declares that it should be interpreted as a file `path`.
+1. An `output` definition block that uses the path object (we can also use Linux/Unix standard output stream `stdout`) from the script block.
 1. A `script` block that contains some bash commands.
 
 
