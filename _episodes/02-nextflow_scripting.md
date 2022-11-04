@@ -265,6 +265,14 @@ println('${var_int}')
 
 ~~~
 processing chromosome 1
+
+17
+var_int
+17
+17
+{var_int}
+${var_int}
+
 ~~~
 {: .output }
 
@@ -274,13 +282,6 @@ processing chromosome 1
 chr = "1"
 //Your variable will not interpolate when used within single quotes
 println('processing chromosome $chr')
-
-17
-var_int
-17
-17
-{var_int}
-${var_int}
 
 ~~~
 {: .language-groovy }
