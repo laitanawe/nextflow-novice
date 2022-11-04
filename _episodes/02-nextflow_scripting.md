@@ -295,7 +295,11 @@ processing chromosome $chr
 
 In the script block, to use a nextflow variable inside a single or multi-line double quoted string `""` prefix the variable name with a `$` to show it should be interpolated.
 
-<b>NOTE</b>: In summary, `$` is <b>mandatory for interpolation within the script block and `""` or `''` is optional when you prefix a Nextflow variable with `$` in the script block</b>. <b>Even when using `$` within a bash `#` comment</b> in the script block, you must use `\$` in order to treat the `$` as part of the comment. However, within the Nextflow scope (<i>any area outside of the script block</i>), `""` is required if you want to interpolate a Nextflow variable using a `$` prefix. In the Nextflow scope, if there's no `""`, then you don't need a `$` prefix to use a variable name within the arguments of a groovy function/operator.
+<b>NOTE: a.) Within script block</b>:
+`$` is <b>mandatory for interpolation within the script block and `""` or `''` is optional when you prefix a Nextflow variable with `$` in the script block</b>. <b>Even when using `$` within a bash `#` comment</b> in the script block, you must use `\$` in order to treat the `$` as part of the comment.
+
+<b>NOTE: b.) Outside the script block</b>:
+Outside the script block and in the Nextflow scope (<i>any area outside of the script block</i>), `""` is required if you want to interpolate a Nextflow variable using a `$` prefix. Also, in the Nextflow scope, use a Nextflow variable name within the arguments of a groovy function/operator if there's no `""` i.e. you don't need a `$` prefix to for interpolation in that case.
 
 ~~~
 #!/usr/bin/env nextflow
