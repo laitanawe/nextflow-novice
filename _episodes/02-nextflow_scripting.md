@@ -307,7 +307,24 @@ output:
 
 script:
  """
- echo ${mystr}
+ The examples below highlight how to interpolate in the script block:
+
+ echo mystr #No \$ prefix, and there is No interpolation.
+
+ echo "mystr" #Double Quotes, No \$, No Interpolation.
+
+ echo "$mystr" #Double Quotes, \$ Interpolation.
+
+ echo "${mystr}" #Double Quotes, \${} Interpolation.
+
+ echo "{mystr}" #Double Quotes, No \$, No Interpolation.
+
+ echo '${mystr}' #Single Quotes, \${} but there is Interpolation.
+
+ echo '$mystr' #Single Quotes, \$ but there is Interpolation.
+
+ echo ${mystr} #No Quotes, \${} but there is Interpolation.
+
  """
 }
 
@@ -319,22 +336,6 @@ testme(params.input)
 testme.out.view()
 
 }
-
-The examples below highlight how to interpolate in the script block:
-
-echo mystr #No \$ prefix, and there is No interpolation.
-
-echo "mystr" #Double Quotes, No \$, No Interpolation.
-
-echo "$mystr" #Double Quotes, \$ Interpolation.
-
-echo "${mystr}" #Double Quotes, \${} Interpolation.
-
-echo "{mystr}" #Double Quotes, No \$, No Interpolation.
-
-echo '${mystr}' #Single Quotes, \${} but there is Interpolation.
-
-echo '$mystr' #Single Quotes, \${} but there is Interpolation.
 
 ~~~
 {: .language-groovy }
@@ -348,6 +349,7 @@ mystr
 Our Script Works!
 Our Script Works!
 {mystr}
+Our Script Works!
 Our Script Works!
 Our Script Works!
 
