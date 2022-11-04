@@ -315,6 +315,27 @@ println(kmers[0..2])
 {: .output}
 
 ### String interpolation of list elements
+The examples below highlight how to interpolate in Nextflow:
+var_int = 17
+
+// No $ but there is interpolation
+`println(var_int)`
+
+// Double Quotes, No $, No Interpolation
+`println("var_int")`
+
+// Double Quotes, $ Interpolation
+`println("$var_int")`
+
+// Double Quotes, ${} Interpolation
+`println("${var_int}")`
+
+// Double Quotes, No $, No Interpolation
+`println("{var_int}")`
+
+// Single Quotes, ${} but No Interpolation
+`println('${var_int}')`
+
 
 To use an expression like `kmer[0..2]` inside a double-quoted string `""`, we use the `${expression}` syntax, similar to Bash shell scripts.
 
