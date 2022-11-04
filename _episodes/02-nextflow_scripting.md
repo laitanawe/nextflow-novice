@@ -394,15 +394,35 @@ println(kmers[0])
 We can use negative numbers as indices in Groovy. They count from the end of the list rather than the front: the index `-1` gives us the last element in the list, `-2` the second to last, and so on. Because of this, `kmers[3]` and `kmers[-1]` point to the same element in our example list.
 
 ~~~
+#!/usr/bin/env nextflow
 kmers = [11,21,27,31]
 //Lists can also be indexed with negative indexes
 println(kmers[3])
 println(kmers[-1])
+
+println("The last element of kmers is: " + kmers[3])
+
+println("The last element of kmers is: $kmers[-1]")
+
+println("The last element of kmers is: " + kmers[0..2])
+
+println("The last element of kmers is: ${kmers[-1]}")
+
+println("The second-to-the-last element of kmers is: ${kmers[-2]}")
+
 ~~~
 {: .language-groovy }
 ~~~
+N E X T F L O W  ~  version 22.10.1
+Launching `script5.nf` [grave_hodgkin] DSL2 - revision: 249ba9a9f4
 31
 31
+The last element of kmers is: 31
+The last element of kmers is: [11, 21, 27, 31][-1]
+The last element of kmers is: [11, 21, 27]
+The last element of kmers is: 31
+The second-to-the-last element of kmers is: 27
+
 ~~~
 {: .output}
 
