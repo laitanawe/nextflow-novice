@@ -231,7 +231,6 @@ To use a variable inside a single or multi-line double quoted string `""`  prefi
 
 ~~~
 chr = "1"
-chr = "1"
 
 //When using your variable within double quotes, you must prefix the $ for your variable to interpolate
 println("processing chromosome $chr")
@@ -243,7 +242,7 @@ The examples below highlight how to interpolate in Nextflow:
 
 var_int = 17
 
-//No $ but there is interpolation:
+//No $ prefix but there is interpolation:
 println(var_int)
 
 //Double Quotes, No $, No Interpolation:
