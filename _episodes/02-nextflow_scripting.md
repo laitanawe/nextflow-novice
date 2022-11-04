@@ -489,6 +489,10 @@ println(mylist.size())
 
 //inside a string need we need to use the ${} syntax
 println("list size is: ${mylist.size()}")
+
+// When there's no double quotes, you can use this:
+println("list size is: " + mylist.size())
+
 ~~~
 {: .language-groovy }
 
