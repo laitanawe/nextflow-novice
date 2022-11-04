@@ -352,7 +352,7 @@ testme.out.view()
 ~~~
 
 executor >  local (1)
-[86/2f14f5] process > neerja (1) [100%] 1 of 1 ✔
+[86/2f14f5] process > testme (1) [100%] 1 of 1 ✔
 mystr
 mystr
 Our Script Works!
