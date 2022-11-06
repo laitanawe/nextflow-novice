@@ -170,7 +170,7 @@ process multiqc {
 
     input:
     path('*')
-    
+
     output:
     path('multiqc_report.html')
 
@@ -190,6 +190,7 @@ read_pairs_ch = Channel.fromFilePairs( params.reads, checkIfExists: true )
 // read_pairs_ch channel is a tuple where the 1st element is a value/sampleID and the 2nd is a list of paths
 read_pairs_ch.view()
 
+// This section is an example on how to convert a tuple into a list if you're interested.
 Channel.fromFilePairs( params.reads, flat: true )
 // read_pairs_flat_ch channel can be turned into a flat list
        .set{read_pairs_flat_ch}
