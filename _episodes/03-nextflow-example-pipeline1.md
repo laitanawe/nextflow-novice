@@ -192,7 +192,8 @@ read_pairs_ch.view()
 
 Channel.fromFilePairs( params.reads, flat: true )
 // read_pairs_flat_ch channel can be turned into a flat list
-       .set{read_pairs_flat_ch}.view()
+       .set{read_pairs_flat_ch}
+read_pairs_flat_ch.view()
 
 /*  The script to execute is called by its process name,
     and input is provided between brackets. */
