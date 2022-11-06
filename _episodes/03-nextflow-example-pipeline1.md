@@ -140,7 +140,8 @@ process quant {
     path(pair_id)
 
     script:
-    /* Triple quote syntax """, Triple-single-quoted strings may span multiple lines. The content of the string can cross line boundaries without the need to split the string in several pieces and without concatenation or newline escape characters. */
+    /* Triple quote syntax """, Triple-single-quoted strings may span multiple lines. The content of the string can cross line boundaries without the need to split the string in several pieces and without concatenation or newline escape characters.
+    In salmon, libType U stands for unstranded */
     """
     salmon quant --threads $task.cpus --libType=U -i $index -1 ${reads[0]} -2 ${reads[1]} -o $pair_id
     """
@@ -169,8 +170,7 @@ process multiqc {
 
     input:
     path('*')
-    path(config)
-
+    
     output:
     path('multiqc_report.html')
 
