@@ -108,7 +108,7 @@ outdir        : ${params.outdir}
 
 
 /*  A Nextflow process block
-    Process names are written, by convention, in uppercase.
+    Process names are written, by convention, in uppercase but it could also be in lowercase.
     This convention is used to enhance workflow readability. */
 
 process index {
