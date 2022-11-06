@@ -47,25 +47,35 @@ followed by a single line comment.
 1. A `script` block that contains some bash commands.
 
 
+This is a Nextflow pipeline performing the following steps:
+1. Indexes a transcriptome file.
+1. Performs quality control.
+1. Performs quantification.
+1. Creates a MultiQC report.
 
 ~~~
 #!/usr/bin/env nextflow
 
 /* Contributors:
- * - Awe, O. (laitanawe@gmail.com)
+ * - Awe, O.I
  */
 
-nextflow.enable.dsl=2
+nextflow.enable.dsl = 2
 
 /*
  * Default pipeline parameters can be overriden on the command line eg.
  * given 'params.foo' specify on the run command line '--foo some_value'
  */
 
+/* This is a general pattern for pairs of files. Triplets are also possible.
+ * To point to other samples apart from ggal_gut, you can use a glob pattern: "$baseDir/data/ggal/*_{1,2}.fq"
+ */
 params.reads = "$baseDir/data/ggal/ggal_gut_{1,2}.fq"
 params.transcriptome = "$baseDir/data/ggal/ggal_1_48850000_49020000.Ggal71.500bpflank.fa"
 params.outdir = "results"
 params.multiqc = "$baseDir/multiqc"
+
+/* log.info is the same thing as println but Nextflow also puts it in the log */
 
 log.info """\
 RNASEQ NEXTFLOW PIPELINE uses the ffg bioinformatics tools: Salmon, FastQC, MultiQC
@@ -104,7 +114,9 @@ process index {
     path 'transcript_index'
 
     script:
-    /* Triple quote syntax """, Triple-single-quoted strings may span multiple lines. The content of the string can cross line boundaries without the need to split the string in several pieces and without concatenation or newline escape characters. */
+    /* Triple quote syntax """, Triple-single-quoted strings may span multiple lines. The content of the string can cross line boundaries without the need to split the string in several pieces and without concatenation or newline escape characters.
+    For the salmon command, -t specifies the input transcriptome file, -i specifies the output directory for the index
+    */
     """
     salmon index --threads $task.cpus -t $transcriptome -i transcript_index
     """
@@ -157,8 +169,6 @@ process multiqc {
     script:
     /* Triple quote syntax """, Triple-single-quoted strings may span multiple lines. The content of the string can cross line boundaries without the need to split the string in several pieces and without concatenation or newline escape characters. */
     """
-    cp $config/* .
-    echo "custom_logo: \$PWD/logo.png" >> multiqc_config.yaml
     multiqc .
     """
 }
@@ -180,7 +190,7 @@ read_pairs_ch = channel.fromFilePairs( params.reads, checkIfExists: true )
     index(params.transcriptome)
     fastqc(read_pairs_ch)
     quant( index.out, read_pairs_ch )
-    //multiqc( fastqc.out.mix( quant.out ).collect(), params.multiqc )
+    multiqc( fastqc.out.mix( quant.out ).collect() )
 
 }
 ~~~~
