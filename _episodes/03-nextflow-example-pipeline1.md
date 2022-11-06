@@ -96,8 +96,10 @@ outdir        : ${params.outdir}
 
 /*  Workflow parameters are written as params.<parameter>
     and can be initialised using the `=` operator. */
-//params.input = "data/yeast/reads/ref1_1.fq.gz"
-
+// There is a docker container with salmon in: https://hub.docker.com/r/nextflow/rnaseq-nf
+// In your nextflow.config file: process.container = 'nextflow/rnaseq-nf'
+// docker.runOptions='-u $(id -u):$(id -g)'
+// To run your salmon using the docker container, you can do: nextflow run script.nf -with-docker
 
 /*  A Nextflow process block
     Process names are written, by convention, in uppercase.
