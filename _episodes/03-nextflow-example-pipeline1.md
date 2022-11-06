@@ -97,7 +97,7 @@ outdir        : ${params.outdir}
 /*  Workflow parameters are written as params.<parameter>
     and can be initialised using the `=` operator. */
 // There is a docker container with salmon in: https://hub.docker.com/r/nextflow/rnaseq-nf
-// To execute by using docker by default, add this to your config: docker.enabled = true
+// To execute by using docker by default and skip -with-docker at the cmd line, add this to your config: docker.enabled = true
 // In your nextflow.config file: process.container = 'nextflow/rnaseq-nf'
 // Or at the top of your process definition/script, container = 'nextflow/rnaseq-nf'
 // docker.runOptions='-u $(id -u):$(id -g)'
