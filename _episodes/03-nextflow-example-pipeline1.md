@@ -103,6 +103,8 @@ outdir        : ${params.outdir}
 // docker.runOptions='-u $(id -u):$(id -g)'
 // To run your salmon using the docker container, you can do: nextflow run script.nf -with-docker
 // To use a docker image different from the one specified in the config, you can do: nextflow run script.nf -with-docker repo_name/image:tag
+// For execution caching / resume, you can do: nextflow run script.nf -with-docker repo_name/image:tag -resume
+// For more cpus, you can do: nextflow run script.nf -with-docker repo_name/image:tag -process.cpus 4
 
 
 /*  A Nextflow process block
@@ -185,6 +187,9 @@ workflow {
 // Input data is received through channels
 // input_ch = Channel.fromPath(params.input)
 read_pairs_ch = channel.fromFilePairs( params.reads, checkIfExists: true )
+
+// read_pairs_ch channel is a tuple where the 1st element is a value/sampleID and the 2nd is a list of paths
+read_pairs_ch.view()
 
 /*  The script to execute is called by its process name,
     and input is provided between brackets. */
