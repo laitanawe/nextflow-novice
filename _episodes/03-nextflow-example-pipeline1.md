@@ -98,8 +98,10 @@ outdir        : ${params.outdir}
     and can be initialised using the `=` operator. */
 // There is a docker container with salmon in: https://hub.docker.com/r/nextflow/rnaseq-nf
 // In your nextflow.config file: process.container = 'nextflow/rnaseq-nf'
+// Or at the top of your process definition/script, container = 'nextflow/rnaseq-nf'
 // docker.runOptions='-u $(id -u):$(id -g)'
 // To run your salmon using the docker container, you can do: nextflow run script.nf -with-docker
+// To use a docker image different from the one specified in the config, you can do: nextflow run script.nf -with-docker repo_name/image:tag
 
 /*  A Nextflow process block
     Process names are written, by convention, in uppercase.
