@@ -334,6 +334,8 @@ script:
 
  echo ${mystr} #No Quotes, \${} but there is Interpolation.
 
+ echo My present working directory is: \$PWD
+
  """
 }
 
@@ -350,9 +352,10 @@ testme.out.view()
 {: .language-groovy }
 
 ~~~
-
+N E X T F L O W  ~  version 21.10.6
+Launching `script1.nf` [modest_cantor] - revision: 593c2ad94d
 executor >  local (1)
-[86/2f14f5] process > testme (1) [100%] 1 of 1 ✔
+[08/4e3534] process > testme (1) [100%] 1 of 1 ✔
 mystr
 mystr
 Our Script Works!
@@ -361,6 +364,7 @@ Our Script Works!
 Our Script Works!
 Our Script Works!
 Our Script Works!
+My present working directory is: /home/aweo/Desktop/nfdemo/work/08/4e3534e96c49c8e712575012be3ece
 
 ~~~
 {: .output }
