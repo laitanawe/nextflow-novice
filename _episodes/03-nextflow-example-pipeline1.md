@@ -200,8 +200,11 @@ read_pairs_flat_ch.view()
     and input is provided between brackets. */
 
 /*  Process output is accessed using the `out` channel.
-    The channel operator view() can be used to print
-    process output to the terminal. */
+    The channel operator view() can be used to print a
+    process' output to the terminal.
+    The operator, .mix() combines all items from multiple channels and the resulting number of items is an addition of the channels.
+    The operator, .collect() flattens a list and converts it into a single element/item leading to one task in the process.
+     */
 
     index(params.transcriptome)
     fastqc(read_pairs_ch)
