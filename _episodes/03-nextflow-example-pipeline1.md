@@ -206,8 +206,8 @@ read_pairs_flat_ch.view()
     The operator, .collect() flattens a list and converts it into a single element/item leading to one task in the process.
      */
 
-    index(params.transcriptome)
-    fastqc(read_pairs_ch)
+    index( params.transcriptome )
+    fastqc( read_pairs_ch )
     quant( index.out, read_pairs_ch )
     multiqc( fastqc.out.mix( quant.out ).collect() )
 

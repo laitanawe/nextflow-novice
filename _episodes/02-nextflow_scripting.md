@@ -589,7 +589,7 @@ println mylist.findAll{it%2 == 0}
 
 ## Maps
 
-It can difficult to remember the index of a value in a list, so we can use Groovy Maps (also known as associative arrays) that have an arbitrary type of key instead of an integer value. The syntax is very similar to Lists. To specify the key use a colon before the value `[key:value]`. Multiple values are separated by a comma. *Note:* the key value is not enclosed in quotes.
+It can be difficult to remember the index of a value in a list, so we can use Groovy Maps (also known as associative arrays) that have an arbitrary type of key instead of an integer value. The syntax is very similar to Lists. To specify the key use a colon before the value `[key:value]`. Multiple values are separated by a comma. *Note:* the key value is not enclosed in quotes.
 
 ~~~                
 roi = [ chromosome: "chr17", start: 7640755, end: 7718054, genes: ['ATP1B2','TP53','WRAP53']]
