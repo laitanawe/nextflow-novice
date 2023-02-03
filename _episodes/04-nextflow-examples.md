@@ -56,7 +56,7 @@ nextflow.enable.dsl=2
 
  }
 ~~~~
-
+{: .language-groovy}
 
 ~~~
 #!/usr/bin/env nextflow
