@@ -31,17 +31,7 @@ keypoints:
 
 Nextflow is a Domain Specific Language (DSL) implemented on top of the Groovy programming language, which in turn is a super-set of the Java programming language. This means that Nextflow can run any Groovy and Java code. It is not necessary to learn Groovy to use Nextflow DSL but it can be useful in edge cases where you need more functionality than the DSL provides.
 
-> ## Nextflow console
->  Nextflow has a console graphical interface. The console is a REPL (read-eval-print loop) environment that allows a user to quickly test part of a script or pieces of Nextflow code in an interactive manner.
->
-> It is a handy tool that allows a user to evaluate fragments of Nextflow/Groovy code or fast prototype a complete pipeline script. More information can be found [here](https://www.nextflow.io/blog/2015/introducing-nextflow-console.html)
->
-> We can use the command `nextflow console` to launch the interactive console to test out out Groovy code.
->
-> ~~~
-> nextflow console
-> ~~~
-> {: .language-bash }
+
 > ### Console global scope
 > It is worth noting that the global script context is maintained across script executions. This means that variables declared in the global script scope are not lost when the script run is complete, and they can be accessed in further executions of the same or another piece of code.
 {: .callout }
@@ -188,42 +178,6 @@ println(x)
 ~~~
 {: .output }
 
-### Slashy strings
-
-Strings can also be defined using the forward slash `/` character as delimiter. They are known as `slashy strings` and are useful for defining regular expressions and patterns, as there is no need to escape backslashes e.g `\n` specifies a new line. As with double quote strings they allow to interpolate variables prefixed with a `$` character.
-
-Try the following to see the difference:
-
-~~~
-x = /ATP1B2\TP53\WRAP53/
-println(x)
-~~~
-{: .language-groovy }
-
-~~~
-ATP1B2\TP53\WRAP53
-~~~
-{: .output }
-
-~~~
-y = 'ATP1B2\TP53\WRAP53'
-println(y)
-~~~
-{: .language-groovy }
-
-Produces an error as the `\` is a special characters that we need to escape.
-
-~~~
-// use \ to escape
-y = 'ATP1B2\\TP53\\WRAP53'
-println(y)
-~~~
-{: .language-groovy }
-
-~~~
-ATP1B2\TP53\WRAP53
-~~~
-{: .output }
 
 ### String interpolation
 
@@ -308,6 +262,9 @@ nextflow.enable.dsl = 2
 
 process testme {
 
+// process directives should go here. You can specify a different container for each process in your workflow.
+// container '/path/to/container/image.sif'
+
 input:
  val mystr
 
@@ -334,7 +291,7 @@ script:
 
  echo ${mystr} #No Quotes, \${} but there is Interpolation.
 
- echo My present working directory is: \$PWD
+ echo $mystr #No Quotes, \$ but there is Interpolation.
 
  """
 }
@@ -352,10 +309,9 @@ testme.out.view()
 {: .language-groovy }
 
 ~~~
-N E X T F L O W  ~  version 21.10.6
-Launching `script1.nf` [modest_cantor] - revision: 593c2ad94d
+
 executor >  local (1)
-[08/4e3534] process > testme (1) [100%] 1 of 1 ✔
+[86/2f14f5] process > testme (1) [100%] 1 of 1 ✔
 mystr
 mystr
 Our Script Works!
@@ -364,7 +320,7 @@ Our Script Works!
 Our Script Works!
 Our Script Works!
 Our Script Works!
-My present working directory is: /home/aweo/Desktop/nfdemo/work/08/4e3534e96c49c8e712575012be3ece
+Our Script Works!
 
 ~~~
 {: .output }
@@ -532,20 +488,47 @@ Listed below are a few more common list methods and their output on a simple exa
 
 ~~~
 mylist = [1,2,3]
+
 println mylist
+
+// concatenate the item, [1] to the existing list
 println mylist + [1]
+
+// remove the item, [1] from the existing list
 println mylist - [1]
+
+//duplicate the existing list
 println mylist * 2
+
+//reverse the order of the items in the existing list
 println mylist.reverse()
+
+//add 3 to each item in the existing list
 println mylist.collect{ it+3 }
+
+//Print the size of the new list if each item is a unique value
 println mylist.unique().size()
+
+//Count the number of times that 1 occurs in the existing list
 println mylist.count(1)
+
+//Minimum value in the existing list
 println mylist.min()
+
+//Maximum value in the existing list
 println mylist.max()
+
+//Sum of the value of items in the existing list
 println mylist.sum()
+
+//Sort the existing list in ascending order
 println mylist.sort()
-println mylist.find{it%2 == 0}
+
+//Print all items that have a remainder 0 when divided by 2
 println mylist.findAll{it%2 == 0}
+
+//.find is a convenience wrapper for .findAll, .findQuery and .findById
+println mylist.find{it%2 == 0}
 ~~~
 {: .language-groovy }
 
@@ -567,6 +550,7 @@ println mylist.findAll{it%2 == 0}
 ~~~
 {: .output }
 
+
 > ## Create List and retrieve value
 > Create a list object `list` with the values 1 to 10.
 > Access the fifth element in the list using with square-bracket notation or using the `get` method and
@@ -586,296 +570,6 @@ println mylist.findAll{it%2 == 0}
 > {: .solution}
 {: .challenge}
 
-
-## Maps
-
-It can be difficult to remember the index of a value in a list, so we can use Groovy Maps (also known as associative arrays) that have an arbitrary type of key instead of an integer value. The syntax is very similar to Lists. To specify the key use a colon before the value `[key:value]`. Multiple values are separated by a comma. *Note:* the key value is not enclosed in quotes.
-
-~~~                
-roi = [ chromosome: "chr17", start: 7640755, end: 7718054, genes: ['ATP1B2','TP53','WRAP53']]
-~~~
-{: .language-groovy }
-
-
-Maps can be accessed in a conventional square-bracket syntax or as if the key was a property of the map or using the dot notation. *Note:* When retrieving a value the key value is enclosed in quotes.
-
-~~~
-//Use of the square brackets.
-println(roi['chromosome'])
-
-//Use a dot notation            
-println(roi.start)
-
-//Use of get method                      
-println(roi.get('genes'))          
-~~~
-{: .language-groovy }
-
-To add data or to modify a map, the syntax is similar to adding values to list:
-
-~~~
-//Use of the square brackets
-roi['chromosome'] = '17'
-
-//Use a dot notation        
-roi.chromosome = 'chr17'  
-
-//Use of put method              
-roi.put('genome', 'hg38')  
-~~~
-{: .language-groovy }
-
-More information about maps can be found in the [Groovy API](http://docs.groovy-lang.org/latest/html/groovy-jdk/java/util/Map.html).
-
-
-## Closures
-
-Closures are the swiss army knife of Nextflow/Groovy programming. In a nutshell a closure is a block of code that can be passed as an argument to a function. This can be useful to create a re-usable function.
-
-We can assign a closure to a variable in same way as a value using the `=`.
-
-~~~
-square = { it * it }
-~~~
-{: .language-groovy }
-
-
-The curly brackets `{}` around the expression `it * it` tells the script interpreter to treat this expression as code. `it` is an implicit variable that is provided in closures. It's available when the closure doesn't have an explicitly declared parameter and represents the value that is passed to the function when it is invoked.
-
-We can pass the function `square` as an argument to other functions or methods. Some built-in functions take a function like this as an argument. One example is the `collect` method on lists that iterates through each element of the list transforming it into a new value using the closure:
-
-~~~
-square = { it * it }
-x = [ 1, 2, 3, 4 ]
-y = x.collect(square)
-println y
-~~~
-{: .language-groovy }
-
-~~~
-[ 1, 4, 9, 16 ]
-~~~
-{: .output }
-
-A closure can also be defined in an anonymous manner, meaning that it is not given a name, and is defined in the place where it needs to be used.
-
-~~~
-x = [ 1, 2, 3, 4 ]
-y = x.collect({ it * it })
-println("x is $x")
-println("y is $y")
-~~~
-{: .language-groovy }
-
-~~~
-x is [1, 2, 3, 4]
-y is [1, 4, 9, 16]
-~~~
-{: .output }
-
-### Closure parameters
-
-By default, closures take a single parameter called `it`. To define a different name use the
-` variable ->` syntax.
-
-For example:
-
-~~~
-square = { num -> num * num }
-~~~
-{: .language-groovy }
-
-In the above example the variable `num` is assigned as the closure input parameter instead of `it`.
-
-> ## Write a closure
-> Write a closure to add the prefix `chr` to each element of  the list `x=[1,2,3,4,5,6]`
-> > ## Solution
-> > ~~~
-> > prefix = { "chr${it}"}
-> > x = [ 1,2,3,4,5,6 ].collect(prefix)
-> > println x
-> > ~~~
-> > {: .language-groovy}
-> > ~~~
-> > [chr1, chr2, chr3, chr4, chr5, chr6]
-> > ~~~
-> > {: .output}
-> {: .solution}
-{: .challenge}
-
-### Multiple map parameters
-
-It’s also possible to define closures with multiple, custom-named parameters using the `->` syntax. This separate the custom-named parameters by a comma before the `->` operator.
-
-
-For example:
-
-~~~
-tp53 = [chromosome: "chr17",start:7661779 ,end:7687538, genome:'GRCh38', gene: "TP53"]
-//perform subtraction of end and start coordinates
-region_length = {start,end -> end-start }
-tp53.length = region_length(tp53.start,tp53.end)
-println(tp53)
-~~~
-{: .language-groovy }
-
-Would add the region `length` to the map `tp53`, calculated as `end - start`.
-
-~~~
-[chromosome:chr17, start:7661779, end:7687538, genome:GRCh38, gene:TP53, length:25759]
-~~~
-{: .output }
-
-
-For another example, the method `each()` when applied to a `map` can take a closure with two arguments, to which it passes the *key-value* pair for each entry in the map object:
-
-~~~
-//closure with two parameters
-printMap = { a, b -> println "$a with value $b" }
-
-//map object
-my_map = [ chromosome : "chr17", start : 1, end : 83257441 ]
-
-//each iterates through each element
-my_map.each(printMap)
-~~~
-{: .language-groovy }
-
-
-~~~
-chromosome with value chr17
-start with value 1
-end with value 83257441
-~~~
-{: .output }
-
-
-Learn more about closures in the [Groovy documentation](http://groovy-lang.org/closures.html).
-
-
-# Additional Material
-
-## Conditional Execution
-
-## If statement
-
-One of the most important features of any programming language is the ability to execute different code under different conditions. The simplest way to do this is to use the if construct.
-
-The if statement uses the syntax common to other programming languages such Java, C, JavaScript, etc.
-
-~~~
-if( < boolean expression > ) {
-    // true branch
-}
-else {
-    // false branch
-}
-~~~
-{: .language-groovy }
-
-
-The else branch is optional. Curly brackets are optional when the branch defines just a single statement.
-
-~~~
-x = 12
-if( x > 10 )
-    println "$x is greater than 10"
-~~~
-{: .language-groovy }
-
-
-*null*, *empty strings* and *empty collections* are evaluated to false.
-Therefore a statement like:
-
-~~~
-list = [1,2,3]
-if( list != null && list.size() > 0 ) {
-  println list
-}
-else {
-  println 'The list is empty'
-}
-~~~
-{: .language-groovy }
-
-
-Can be written as:
-
-~~~
-if( list )
-    println list
-else
-    println 'The list is empty'
-~~~
-{: .language-groovy }
-
-
-In some cases can be useful to replace `if` statement with a ternary expression, also known as a conditional expression. For example:
-
-~~~
-println list ? list : 'The list is empty'
-~~~
-{: .language-groovy }
-
-
-The previous statement can be further simplified using the Elvis operator `?:` as shown below:
-
-~~~
-println list ?: 'The list is empty'
-~~~
-{: .language-groovy }
-
-
-## For statement
-
-The classical for loop syntax is supported as shown here:
-
-~~~
-for (int i = 0; i <3; i++) {
-   println("Hello World $i")
-}
-~~~
-{: .language-groovy }
-
-
-Iteration over list objects is also possible using the syntax below:
-
-~~~
-list = ['a','b','c']
-
-for( String elem : list ) {
-  println elem
-}
-~~~
-{: .language-groovy }
-
-
-## Functions
-
-It is possible to define a custom function into a script, as shown here:
-
-~~~
-int fib(int n) {
-    return n < 2 ? 1 : fib(n-1) + fib(n-2)
-}
-
-println (fib(10)) // prints 89
-~~~
-{: .language-groovy }
-
-
-- A function can take multiple arguments separated by commas.
-- The `return` keyword can be omitted and the function implicitly returns the value of the last evaluated expression. (Not recommended)
-- Explicit types can be omitted. (Not recommended):
-
-~~~
-def fact( n ) {
-  n > 1 ? n * fact(n-1) : 1
-}
-
-println (fact(5)) // prints 120
-~~~
-{: .language-groovy }
 
 ## More resources
 
