@@ -43,10 +43,10 @@ nextflow.enable.dsl=2
 
  process newconcat {
 
- debug true
+ echo true
 
  input:
- path(myreads) from params.reads.collect()
+ path(myreads)
 
  script:
  """
@@ -54,6 +54,12 @@ nextflow.enable.dsl=2
  head -20 ${params.concatout} > ${params.twentyout}
  """
 
+ }
+
+ workflow {
+ ch_in = params.reads
+
+ newconcat(ch_in)
  }
 ~~~~
 {: .language-groovy}
@@ -78,7 +84,7 @@ nextflow.enable.dsl=2
 
  process twoinputs {
 
- debug true
+ echo true
 
  input:
  val x
