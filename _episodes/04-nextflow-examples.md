@@ -97,7 +97,6 @@ ch2 = params.ch2
 twoinputs(ch1, ch2)
 }
 ~~~~
-
 {: .language-groovy}
 
 To run a Nextflow script use the command `nextflow run <script_name>`.
