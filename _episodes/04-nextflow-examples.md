@@ -26,7 +26,7 @@ NOTE: In order to run a Nextflow DSL2 script, it must have a workflow section.
 #!/usr/bin/env nextflow
 
 /* Contributors:
- * - Awe, O. (laitanawe@gmail.com)
+ * - Awe, O.I
  */
 
 nextflow.enable.dsl=2
@@ -62,7 +62,7 @@ nextflow.enable.dsl=2
 #!/usr/bin/env nextflow
 
 /* Contributors:
- * - Awe, O. (laitanawe@gmail.com)
+ * - Awe, O.I
  */
 
 nextflow.enable.dsl=2
