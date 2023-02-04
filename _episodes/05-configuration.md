@@ -1,7 +1,7 @@
 ---
 title: "Nextflow configuration"
-teaching: 30
-exercises: 15
+teaching: 10
+exercises: 10
 questions:
 - "What is the difference between the workflow implementation and the workflow configuration?"
 - "How do I configure a Nextflow workflow?"

@@ -1,7 +1,7 @@
 ---
 title: "Getting Started with Nextflow"
-teaching: 60
-exercises: 40
+teaching: 20
+exercises: 20
 questions:
 - "What is a workflow and what are workflow management systems?"
 - "Why should I use a workflow management system?"

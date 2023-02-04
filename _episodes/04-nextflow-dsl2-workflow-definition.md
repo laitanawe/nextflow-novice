@@ -1,6 +1,6 @@
 ---
 title: "Nextflow DSL2 Workflow Definition"
-teaching: 50
+teaching: 20
 exercises: 10
 questions:
 - "What are the main differences between a Nextflow DSL2 and DSL1 process?"

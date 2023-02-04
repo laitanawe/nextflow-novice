@@ -1,6 +1,6 @@
 ---
 title: "Nextflow Example Pipeline1"
-teaching: 50
+teaching: 20
 exercises: 10
 questions:
 - "What are the main features of a Nextflow module?"
